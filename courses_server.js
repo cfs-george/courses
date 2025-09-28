@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'images')));
 
 // Define route to render page
 app.get('/', async (req, res) => {
-  res.render('cfs_home', {
+  res.render('courses_home', {
     cfs_logo: '/cfs_logo.png',
   });
 });
