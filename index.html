@@ -84,23 +84,26 @@
 
       /* Main content container */
       .welcome-div {
-        max-width: 600px;
-        min-height: 50%;
-        margin-top: 60px;
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
+        flex-direction: row;
+        max-width: 600px;
+        margin-top: 60px;
         padding: 20px;
         background-color: rgba(34, 34, 34, 0.5);
         backdrop-filter: blur(2px);
         border-radius: 20px;
-        transition: all 0.5s ease-in-out;
-        overflow-y: auto;
+        transition: all 0.4s ease-in-out;
         z-index: 2;
       }
 
-      .welcome-div h2 {
+      .welcome-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 220px;
+      }
+
+      .welcome-left h2 {
         font-weight: bold;
         color: #fff;
         text-align: center;
@@ -108,7 +111,7 @@
         margin-bottom: 20px;
       }
 
-      .welcome-div p {
+      .welcome-left p {
         font-weight: bold;
         color: #c9c9c9;
         text-align: center;
@@ -137,29 +140,39 @@
         background-color: #777;
       }
 
-      .sub-buttons {
+      /* Right-side expansion area */
+      .welcome-right {
         overflow: hidden;
-        max-height: 0;
-        transition: max-height 0.4s ease, opacity 0.4s ease;
+        max-width: 0;
         opacity: 0;
         display: flex;
         flex-direction: column;
-        margin-top: 5px;
+        margin-left: 20px;
+        transition: max-width 0.4s ease, opacity 0.4s ease;
       }
 
-      .sub-buttons.open {
+      .welcome-div.expanded .welcome-right {
+        max-width: 250px;
         opacity: 1;
-        max-height: 500px; /* large enough to fit sub-buttons */
+      }
+
+      .sub-buttons {
+        display: none;
+        flex-direction: column;
+      }
+
+      .sub-buttons.active {
+        display: flex;
       }
 
       .sub-buttons a {
         text-decoration: none;
-        margin: 3px 0;
+        margin: 5px 0;
       }
 
       .sub-buttons button {
-        width: 95%;
-        padding: 8px 0;
+        width: 100%;
+        padding: 10px;
         border: none;
         border-radius: 8px;
         background-color: #666;
@@ -173,7 +186,7 @@
         background-color: #999;
       }
 
-      /* Particles styling */
+      /* Particles styling (unchanged) */
       .particles {
         position: absolute;
         top: 0;
@@ -211,183 +224,98 @@
       }
 
       @keyframes fadeInOut {
-        0% {
-          opacity: 1;
-        }
-        45% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.3;
-        }
-        55% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 1;
-        }
+        0% { opacity: 1; }
+        45% { opacity: 1; }
+        50% { opacity: 0.3; }
+        55% { opacity: 1; }
+        100% { opacity: 1; }
       }
       @keyframes floatAcross {
-        0% {
-          transform: translate(0, 0);
-        }
-        25% {
-          transform: translate(40px, -40px);
-        }
-        50% {
-          transform: translate(50px, 50px);
-        }
-        75% {
-          transform: translate(-40px, 40px);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(40px, -40px); }
+        50% { transform: translate(50px, 50px); }
+        75% { transform: translate(-40px, 40px); }
+        100% { transform: translate(0, 0); }
       }
       @keyframes floatAcrossAlt {
-        0% {
-          transform: translate(0, 0);
-        }
-        25% {
-          transform: translate(-50px, 60px);
-        }
-        50% {
-          transform: translate(60px, -40px);
-        }
-        75% {
-          transform: translate(55px, 40px);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(-50px, 60px); }
+        50% { transform: translate(60px, -40px); }
+        75% { transform: translate(55px, 40px); }
+        100% { transform: translate(0, 0); }
       }
       @keyframes floatDiagonal {
-        0% {
-          transform: translate(0, 0);
-        }
-        25% {
-          transform: translate(30px, 30px);
-        }
-        50% {
-          transform: translate(-30px, -30px);
-        }
-        75% {
-          transform: translate(20px, -20px);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(30px, 30px); }
+        50% { transform: translate(-30px, -30px); }
+        75% { transform: translate(20px, -20px); }
+        100% { transform: translate(0, 0); }
       }
       @keyframes floatWave {
-        0% {
-          transform: translate(0, 0);
-        }
-        25% {
-          transform: translate(40px, 20px);
-        }
-        50% {
-          transform: translate(10px, -20px);
-        }
-        75% {
-          transform: translate(-40px, 10px);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(40px, 20px); }
+        50% { transform: translate(10px, -20px); }
+        75% { transform: translate(-40px, 10px); }
+        100% { transform: translate(0, 0); }
       }
 
       @media screen and (max-width: 750px) {
         .welcome-div {
-          max-width: 90%;
-          padding: 15px;
+          flex-direction: column;
         }
-        .welcome-div h2 {
-          font-size: 1.5rem;
+        .welcome-right {
+          max-width: 100% !important;
+          margin-left: 0;
+          margin-top: 20px;
         }
       }
     </style>
   </head>
   <body>
     <div class="top-banner">
-      <img
-        id="dirty_cars_logo"
-        src="images/dirty_cars_logo_white.svg"
-        alt="Dirty Cars Logo"
-      />
+      <img id="dirty_cars_logo" src="images/dirty_cars_logo_white.svg" alt="Dirty Cars Logo" />
       <img id="cfs_logo" src="images/cfs_logo.png" alt="CFS Logo" />
     </div>
 
     <div class="container">
       <div class="welcome-div">
-        <h2>Dirty Cars Courses</h2>
-        <p>Choose a module below</p>
+        <!-- LEFT: module buttons -->
+        <div class="welcome-left">
+          <h2>Dirty Cars Courses</h2>
+          <p>Choose a module below</p>
 
-        <div class="module">
-          <button>Module 1</button>
-          <div class="sub-buttons">
-            <a href="https://example.com/module1/lesson1" target="_blank">
-              <button>Lesson 1</button>
-            </a>
-            <a href="https://example.com/module1/lesson2" target="_blank">
-              <button>Lesson 2</button>
-            </a>
-          </div>
+          <div class="module"><button>Module 1</button></div>
+          <div class="module"><button>Module 2</button></div>
+          <div class="module"><button>Module 3</button></div>
+          <div class="module"><button>Module 4</button></div>
+          <div class="module"><button>Module 5</button></div>
+          <div class="module"><button>Module 6</button></div>
         </div>
 
-        <div class="module">
-          <button>Module 2</button>
-          <div class="sub-buttons">
-            <a href="https://example.com/module2/lesson1" target="_blank">
-              <button>Lesson 1</button>
-            </a>
-            <a href="https://example.com/module2/lesson2" target="_blank">
-              <button>Lesson 2</button>
-            </a>
-            <a href="https://example.com/module2/lesson3" target="_blank">
-              <button>Lesson 3</button>
-            </a>
+        <!-- RIGHT: sub-buttons -->
+        <div class="welcome-right">
+          <div class="sub-buttons" data-module="Module 1">
+            <a href="https://example.com/module1/lesson1" target="_blank"><button>Lesson 1</button></a>
+            <a href="https://example.com/module1/lesson2" target="_blank"><button>Lesson 2</button></a>
           </div>
-        </div>
-
-        <div class="module">
-          <button>Module 3</button>
-          <div class="sub-buttons">
-            <a href="https://example.com/module3/lesson1" target="_blank">
-              <button>Lesson 1</button>
-            </a>
+          <div class="sub-buttons" data-module="Module 2">
+            <a href="https://example.com/module2/lesson1" target="_blank"><button>Lesson 1</button></a>
+            <a href="https://example.com/module2/lesson2" target="_blank"><button>Lesson 2</button></a>
+            <a href="https://example.com/module2/lesson3" target="_blank"><button>Lesson 3</button></a>
           </div>
-        </div>
-
-        <div class="module">
-          <button>Module 4</button>
-          <div class="sub-buttons">
-            <a href="https://example.com/module4/lesson1" target="_blank">
-              <button>Lesson 1</button>
-            </a>
-            <a href="https://example.com/module4/lesson2" target="_blank">
-              <button>Lesson 2</button>
-            </a>
+          <div class="sub-buttons" data-module="Module 3">
+            <a href="https://example.com/module3/lesson1" target="_blank"><button>Lesson 1</button></a>
           </div>
-        </div>
-
-        <div class="module">
-          <button>Module 5</button>
-          <div class="sub-buttons">
-            <a href="https://example.com/module5/lesson1" target="_blank">
-              <button>Lesson 1</button>
-            </a>
+          <div class="sub-buttons" data-module="Module 4">
+            <a href="https://example.com/module4/lesson1" target="_blank"><button>Lesson 1</button></a>
+            <a href="https://example.com/module4/lesson2" target="_blank"><button>Lesson 2</button></a>
           </div>
-        </div>
-
-        <div class="module">
-          <button>Module 6</button>
-          <div class="sub-buttons">
-            <a href="https://example.com/module6/lesson1" target="_blank">
-              <button>Lesson 1</button>
-            </a>
-            <a href="https://example.com/module6/lesson2" target="_blank">
-              <button>Lesson 2</button>
-            </a>
+          <div class="sub-buttons" data-module="Module 5">
+            <a href="https://example.com/module5/lesson1" target="_blank"><button>Lesson 1</button></a>
+          </div>
+          <div class="sub-buttons" data-module="Module 6">
+            <a href="https://example.com/module6/lesson1" target="_blank"><button>Lesson 1</button></a>
+            <a href="https://example.com/module6/lesson2" target="_blank"><button>Lesson 2</button></a>
           </div>
         </div>
       </div>
@@ -432,10 +360,26 @@
     </div>
 
     <script>
+      const welcomeDiv = document.querySelector(".welcome-div");
+      const subGroups = document.querySelectorAll(".sub-buttons");
+
       document.querySelectorAll(".module > button").forEach((btn) => {
         btn.addEventListener("click", () => {
-          const subBtns = btn.nextElementSibling;
-          subBtns.classList.toggle("open");
+          const moduleName = btn.textContent.trim();
+
+          // Expand welcome-div to show right side
+          welcomeDiv.classList.add("expanded");
+
+          // Hide all sub-groups
+          subGroups.forEach((sg) => sg.classList.remove("active"));
+
+          // Show the selected sub-group
+          const match = document.querySelector(
+            `.sub-buttons[data-module="${moduleName}"]`
+          );
+          if (match) {
+            match.classList.add("active");
+          }
         });
       });
     </script>
