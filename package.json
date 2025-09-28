@@ -1,13 +1,13 @@
 {
-  "name": "web_cyberfreaksoftware",
+  "name": "courses",
   "version": "1.0.0",
-  "description": "Cyberfreak Software webpage",
+  "description": "Dirty Cars courses webpage",
   "license": "ISC",
   "author": "George Lomas",
   "type": "module",
-  "main": "cfs_server.js",
+  "main": "courses_server.js",
   "scripts": {
-    "start": "nodemon cfs_server.js"
+    "start": "nodemon courses_server.js"
   },
   "dependencies": {
     "ejs": "^3.1.10",
