@@ -50,17 +50,23 @@
         backdrop-filter: blur(3px);
       }
 
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+      }
+
       /* Main content container */
       .welcome-div {
-        margin-top: 120px; /* push below banner */
         max-width: 400px;
-        width: 90%;
         min-height: 50%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        align-self: center;
         padding: 20px;
         background-color: rgba(34, 34, 34, 0.6);
         backdrop-filter: blur(3px);
@@ -103,7 +109,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        /* z-index: -1; */
+        z-index: 1;
         opacity: 1;
       }
 
@@ -182,14 +188,16 @@
   <body>
     <div class="top-banner">Dirty Cars Courses</div>
 
-    <div class="welcome-div">
-      <h2>Choose a module</h2>
-      <button>Module 1</button>
-      <button>Module 2</button>
-      <button>Module 3</button>
-      <button>Module 4</button>
-      <button>Module 5</button>
-      <button>Module 6</button>
+    <div class="container">
+      <div class="welcome-div">
+        <h2>Choose a module</h2>
+        <button>Module 1</button>
+        <button>Module 2</button>
+        <button>Module 3</button>
+        <button>Module 4</button>
+        <button>Module 5</button>
+        <button>Module 6</button>
+      </div>
     </div>
 
     <div class="particles">
