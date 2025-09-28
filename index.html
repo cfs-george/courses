@@ -38,16 +38,23 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 60px;
+        height: 80px;
         background-color: rgba(34,34,34,0.9);
         color: #fff;
         display: flex;
+        flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         font-size: 1.5rem;
         font-weight: bold;
         z-index: 10;
         backdrop-filter: blur(3px);
+      }
+
+      #dirty_cars_logo {
+        width: auto;
+        height: 60px;
+        margin-left: 20px;
       }
 
       .container {
@@ -194,7 +201,7 @@
   </head>
   <body>
     <div class="top-banner">
-      <img src="images/dirty_cars_logo.svg" alt="Dirty Cars Logo">
+      <img id="dirty_cars_logo" src="images/dirty_cars_logo.svg" alt="Dirty Cars Logo">
     </div>
 
     <div class="container">
