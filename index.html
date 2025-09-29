@@ -1,7 +1,7 @@
 <!--
  * Name:        courses_home.ejs
  * Author:      George Lomas
- * Date:        29-09-2025
+ * Date:        28-09-2025
  * Purpose:     Courses home page
 -->
 
@@ -86,6 +86,7 @@
       .welcome-div {
         display: flex;
         flex-direction: row;
+        max-width: 600px;
         margin-top: 60px;
         padding: 20px;
         background-color: rgba(34, 34, 34, 0.5);
@@ -94,14 +95,13 @@
         transition: all 0.4s ease-in-out;
         z-index: 2;
         position: relative;
-        width: auto;
-        min-width: 600px;
       }
 
       .welcome-left {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        min-width: 220px;
         position: relative;
       }
 
@@ -111,7 +111,6 @@
         text-align: center;
         font-size: 32px;
         margin-bottom: 20px;
-        width: 100%;
       }
 
       .welcome-left p {
@@ -120,41 +119,37 @@
         text-align: center;
         font-size: 20px;
         margin-bottom: 20px;
-        width: 100%;
       }
 
       .module {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+        width: 100%;
         margin: 5px 0;
+        position: relative;
       }
 
       .module > button {
-        padding: 12px 20px;
+        width: 100%;
+        padding: 12px 0;
         border: none;
         border-radius: 10px;
         background-color: #444;
         color: #fff;
         font-size: 1rem;
         cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s;
+        transition: background-color 0.3s ease;
       }
 
       .module > button:hover {
         background-color: #777;
       }
 
-      /* Visual indicator for active module */
-      .module > button.active {
-        background-color: #1e90ff;
-        transform: scale(1.05);
-      }
-
-      /* Sub-buttons now flow inside the container */
+      /* Sub-buttons: positioned to the right of their parent */
       .sub-buttons {
         display: none;
         flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 100%;
         margin-left: 15px;
       }
 
@@ -260,11 +255,8 @@
         .welcome-div {
           flex-direction: column;
         }
-        .module {
-          flex-direction: column;
-          align-items: flex-start;
-        }
         .sub-buttons {
+          position: static;
           margin-left: 0;
           margin-top: 10px;
         }
@@ -375,16 +367,15 @@
         btn.addEventListener("click", () => {
           const module = btn.parentElement;
           const sub = module.querySelector(".sub-buttons");
+
           const isActive = sub.classList.contains("active");
 
-          // Close all sub-groups + remove active states
+          // Close all sub-groups
           subGroups.forEach((sg) => sg.classList.remove("active"));
-          modules.forEach((b) => b.classList.remove("active"));
 
           if (!isActive) {
             // Open the clicked one
             sub.classList.add("active");
-            btn.classList.add("active");
           }
         });
       });
