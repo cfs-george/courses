@@ -179,14 +179,14 @@
         opacity: 0;
         visibility: hidden;
         transform: translateX(-20px);
-        transition: opacity 0.4s ease-in 0.4s, transform 0.4s ease 0.4s, visibility 0s linear 0.4s;
+        transition: opacity 0.4s ease-in, transform 0.4s ease, visibility 0s linear;
       }
 
       .sub-buttons.active {
         opacity: 1;
         visibility: visible;
         transform: translateX(0);
-        transition: opacity 0.4s ease-in, transform 0.4s ease, visibility 0s linear;
+        transition: opacity 0.4s ease-in 0.4s, transform 0.4s ease 0.4s, visibility 0s linear 0.4s;
       }
 
       .sub-buttons a {
