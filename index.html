@@ -1,7 +1,7 @@
 <!--
  * Name:        courses_home.ejs
  * Author:      George Lomas
- * Date:        28-09-2025
+ * Date:        29-09-2025
  * Purpose:     Courses home page
 -->
 
@@ -86,7 +86,6 @@
       .welcome-div {
         display: flex;
         flex-direction: row;
-        max-width: 600px;
         margin-top: 60px;
         padding: 20px;
         background-color: rgba(34, 34, 34, 0.5);
@@ -94,19 +93,16 @@
         border-radius: 20px;
         transition: all 0.4s ease-in-out;
         z-index: 2;
-        overflow: hidden;
-      }
-
-      /* Expand width when right side is shown */
-      .welcome-div.expanded {
-        max-width: 900px; /* allow more room */
+        position: relative;
+        width: auto;
+        min-width: 600px;
       }
 
       .welcome-left {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        min-width: 220px;
+        align-items: flex-start;
+        position: relative;
       }
 
       .welcome-left h2 {
@@ -115,6 +111,7 @@
         text-align: center;
         font-size: 32px;
         margin-bottom: 20px;
+        width: 100%;
       }
 
       .welcome-left p {
@@ -123,23 +120,25 @@
         text-align: center;
         font-size: 20px;
         margin-bottom: 20px;
+        width: 100%;
       }
 
       .module {
-        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         margin: 5px 0;
       }
 
       .module > button {
-        width: 100%;
-        padding: 12px 0;
+        padding: 12px 20px;
         border: none;
         border-radius: 10px;
         background-color: #444;
         color: #fff;
         font-size: 1rem;
         cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
+        transition: background-color 0.3s ease, transform 0.2s;
       }
 
       .module > button:hover {
@@ -149,29 +148,14 @@
       /* Visual indicator for active module */
       .module > button.active {
         background-color: #1e90ff;
-        color: #fff;
-        transform: scale(1.03);
+        transform: scale(1.05);
       }
 
-      /* Right-side expansion area */
-      .welcome-right {
-        overflow: hidden;
-        max-width: 0;
-        opacity: 0;
-        display: flex;
-        flex-direction: column;
-        margin-left: 20px;
-        transition: max-width 0.4s ease, opacity 0.4s ease;
-      }
-
-      .welcome-div.expanded .welcome-right {
-        max-width: 250px;
-        opacity: 1;
-      }
-
+      /* Sub-buttons now flow inside the container */
       .sub-buttons {
         display: none;
         flex-direction: column;
+        margin-left: 15px;
       }
 
       .sub-buttons.active {
@@ -184,7 +168,7 @@
       }
 
       .sub-buttons button {
-        width: 100%;
+        width: 180px;
         padding: 10px;
         border: none;
         border-radius: 8px;
@@ -275,12 +259,14 @@
       @media screen and (max-width: 750px) {
         .welcome-div {
           flex-direction: column;
-          max-width: 100% !important;
         }
-        .welcome-right {
-          max-width: 100% !important;
+        .module {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .sub-buttons {
           margin-left: 0;
-          margin-top: 20px;
+          margin-top: 10px;
         }
       }
     </style>
@@ -298,38 +284,46 @@
           <h2>Dirty Cars Courses</h2>
           <p>Choose a module below</p>
 
-          <div class="module"><button>Module 1</button></div>
-          <div class="module"><button>Module 2</button></div>
-          <div class="module"><button>Module 3</button></div>
-          <div class="module"><button>Module 4</button></div>
-          <div class="module"><button>Module 5</button></div>
-          <div class="module"><button>Module 6</button></div>
-        </div>
-
-        <!-- RIGHT: sub-buttons -->
-        <div class="welcome-right">
-          <div class="sub-buttons" data-module="Module 1">
-            <a href="https://example.com/module1/lesson1" target="_blank"><button>Lesson 1</button></a>
-            <a href="https://example.com/module1/lesson2" target="_blank"><button>Lesson 2</button></a>
+          <div class="module">
+            <button>Module 1</button>
+            <div class="sub-buttons" data-module="Module 1">
+              <a href="https://example.com/module1/lesson1" target="_blank"><button>Lesson 1</button></a>
+              <a href="https://example.com/module1/lesson2" target="_blank"><button>Lesson 2</button></a>
+            </div>
           </div>
-          <div class="sub-buttons" data-module="Module 2">
-            <a href="https://example.com/module2/lesson1" target="_blank"><button>Lesson 1</button></a>
-            <a href="https://example.com/module2/lesson2" target="_blank"><button>Lesson 2</button></a>
-            <a href="https://example.com/module2/lesson3" target="_blank"><button>Lesson 3</button></a>
+          <div class="module">
+            <button>Module 2</button>
+            <div class="sub-buttons" data-module="Module 2">
+              <a href="https://example.com/module2/lesson1" target="_blank"><button>Lesson 1</button></a>
+              <a href="https://example.com/module2/lesson2" target="_blank"><button>Lesson 2</button></a>
+              <a href="https://example.com/module2/lesson3" target="_blank"><button>Lesson 3</button></a>
+            </div>
           </div>
-          <div class="sub-buttons" data-module="Module 3">
-            <a href="https://example.com/module3/lesson1" target="_blank"><button>Lesson 1</button></a>
+          <div class="module">
+            <button>Module 3</button>
+            <div class="sub-buttons" data-module="Module 3">
+              <a href="https://example.com/module3/lesson1" target="_blank"><button>Lesson 1</button></a>
+            </div>
           </div>
-          <div class="sub-buttons" data-module="Module 4">
-            <a href="https://example.com/module4/lesson1" target="_blank"><button>Lesson 1</button></a>
-            <a href="https://example.com/module4/lesson2" target="_blank"><button>Lesson 2</button></a>
+          <div class="module">
+            <button>Module 4</button>
+            <div class="sub-buttons" data-module="Module 4">
+              <a href="https://example.com/module4/lesson1" target="_blank"><button>Lesson 1</button></a>
+              <a href="https://example.com/module4/lesson2" target="_blank"><button>Lesson 2</button></a>
+            </div>
           </div>
-          <div class="sub-buttons" data-module="Module 5">
-            <a href="https://example.com/module5/lesson1" target="_blank"><button>Lesson 1</button></a>
+          <div class="module">
+            <button>Module 5</button>
+            <div class="sub-buttons" data-module="Module 5">
+              <a href="https://example.com/module5/lesson1" target="_blank"><button>Lesson 1</button></a>
+            </div>
           </div>
-          <div class="sub-buttons" data-module="Module 6">
-            <a href="https://example.com/module6/lesson1" target="_blank"><button>Lesson 1</button></a>
-            <a href="https://example.com/module6/lesson2" target="_blank"><button>Lesson 2</button></a>
+          <div class="module">
+            <button>Module 6</button>
+            <div class="sub-buttons" data-module="Module 6">
+              <a href="https://example.com/module6/lesson1" target="_blank"><button>Lesson 1</button></a>
+              <a href="https://example.com/module6/lesson2" target="_blank"><button>Lesson 2</button></a>
+            </div>
           </div>
         </div>
       </div>
@@ -374,32 +368,23 @@
     </div>
 
     <script>
-      const welcomeDiv = document.querySelector(".welcome-div");
+      const modules = document.querySelectorAll(".module > button");
       const subGroups = document.querySelectorAll(".sub-buttons");
-      const moduleButtons = document.querySelectorAll(".module > button");
 
-      moduleButtons.forEach((btn) => {
+      modules.forEach((btn) => {
         btn.addEventListener("click", () => {
-          const moduleName = btn.textContent.trim();
+          const module = btn.parentElement;
+          const sub = module.querySelector(".sub-buttons");
+          const isActive = sub.classList.contains("active");
 
-          // Expand welcome-div
-          welcomeDiv.classList.add("expanded");
-
-          // Reset all module button states
-          moduleButtons.forEach((b) => b.classList.remove("active"));
-
-          // Highlight the active one
-          btn.classList.add("active");
-
-          // Hide all sub-groups
+          // Close all sub-groups + remove active states
           subGroups.forEach((sg) => sg.classList.remove("active"));
+          modules.forEach((b) => b.classList.remove("active"));
 
-          // Show the selected sub-group
-          const match = document.querySelector(
-            `.sub-buttons[data-module="${moduleName}"]`
-          );
-          if (match) {
-            match.classList.add("active");
+          if (!isActive) {
+            // Open the clicked one
+            sub.classList.add("active");
+            btn.classList.add("active");
           }
         });
       });
