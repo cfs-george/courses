@@ -82,7 +82,7 @@
       /* Main content container */
       .welcome-div {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         width: 400px;
         margin-top: 60px;
@@ -131,10 +131,6 @@
 
       .module > button {
         width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
         padding: 12px 0;
         border: none;
         border-radius: 10px;
@@ -142,7 +138,7 @@
         color: #fff;
         font-size: 1rem;
         cursor: pointer;
-        transition: background-color 0.5s ease;
+        transition: background-color 1s ease;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -157,7 +153,6 @@
       }
 
       .module > button i {
-        margin-left: 10px;
         opacity: 0;
         transition: opacity 0.6s ease;
         color: #0355B6;
@@ -165,6 +160,11 @@
 
       .module > button.active i {
         opacity: 1;
+      }
+
+      .module > button p {
+        margin-left: 40px;
+        margin-right: 40px;
       }
 
       /* .module > button::after {
@@ -324,14 +324,14 @@
           <p>Choose a module below</p>
 
           <div class="module">
-            <button><div></div>Module 1<i class="fas fa-chevron-right"></i></button>
+            <button><p>Module 1</p><i class="fas fa-chevron-right"></i></button>
             <div class="sub-buttons" data-module="Module 1">
               <a href="https://example.com/module1/lesson1" target="_blank"><button>Lesson 1</button></a>
               <a href="https://example.com/module1/lesson2" target="_blank"><button>Lesson 2</button></a>
             </div>
           </div>
           <div class="module">
-            <button><div></div>Module 2<i class="fas fa-chevron-right"></i></button>
+            <button><p>Module 2</p><i class="fas fa-chevron-right"></i></button>
             <div class="sub-buttons" data-module="Module 2">
               <a href="https://example.com/module2/lesson1" target="_blank"><button>Lesson 1</button></a>
               <a href="https://example.com/module2/lesson2" target="_blank"><button>Lesson 2</button></a>
@@ -339,26 +339,26 @@
             </div>
           </div>
           <div class="module">
-            <button><div></div>Module 3<i class="fas fa-chevron-right"></i></button>
+            <button><p>Module 3</p><i class="fas fa-chevron-right"></i></button>
             <div class="sub-buttons" data-module="Module 3">
               <a href="https://example.com/module3/lesson1" target="_blank"><button>Lesson 1</button></a>
             </div>
           </div>
           <div class="module">
-            <button><div></div>Module 4<i class="fas fa-chevron-right"></i></button>
+            <button><p>Module 4</p><i class="fas fa-chevron-right"></i></button>
             <div class="sub-buttons" data-module="Module 4">
               <a href="https://example.com/module4/lesson1" target="_blank"><button>Lesson 1</button></a>
               <a href="https://example.com/module4/lesson2" target="_blank"><button>Lesson 2</button></a>
             </div>
           </div>
           <div class="module">
-            <button><div></div>Module 5<i class="fas fa-chevron-right"></i></button>
+            <button><p>Module 5</p><i class="fas fa-chevron-right"></i></button>
             <div class="sub-buttons" data-module="Module 5">
               <a href="https://example.com/module5/lesson1" target="_blank"><button>Lesson 1</button></a>
             </div>
           </div>
           <div class="module">
-            <button><div></div>Module 6<i class="fas fa-chevron-right"></i></button>
+            <button><p>Module 6</p><i class="fas fa-chevron-right"></i></button>
             <div class="sub-buttons" data-module="Module 6">
               <a href="https://example.com/module6/lesson1" target="_blank"><button>Lesson 1</button></a>
               <a href="https://example.com/module6/lesson2" target="_blank"><button>Lesson 2</button></a>
