@@ -135,7 +135,7 @@
 
       .module > button {
         width: 100%;
-        padding: 12px 0;
+        padding: 12px 20px;
         border: none;
         border-radius: 10px;
         background-color: #444;
@@ -144,7 +144,7 @@
         cursor: pointer;
         transition: background-color 0.6s ease, color 0.6s ease;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
       }
 
@@ -158,7 +158,6 @@
       }
 
       .module > button i {
-        margin-left: 80px;
         opacity: 0;
         transition: opacity 0.6s ease;
         color: #0355B6;
@@ -179,14 +178,14 @@
         opacity: 0;
         visibility: hidden;
         transform: translateX(-20px);
-        transition: opacity 0.4s ease-in-out, transform 0.4s ease, visibility 0s linear;
+        transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0s linear 0.4s;
       }
 
       .sub-buttons.active {
         opacity: 1;
         visibility: visible;
         transform: translateX(0);
-        transition: opacity 0.4s ease-in 0.4s, transform 0.4s ease 0.4s, visibility 0s linear 0.4s;
+        transition: opacity 0.4s ease-in 0.4s, transform 0.4s ease-in 0.4s, visibility 0s linear;
       }
 
       .sub-buttons a {
@@ -318,8 +317,7 @@
           <div class="module">
             <button>Module 1<i class="fas fa-arrow-right"></i></button>
             <div class="sub-buttons" data-module="Module 1">
-              <a href="https://example.com/module1/lesson1" target="_blank"><button>Lesson 1</button></a>
-              <a href="https://example.com/module1/lesson2" target="_blank"><button>Lesson 2</button></a>
+              <a href="https://www.youtube.com/watch?v=AGMAEScffwk" target="_blank"><button>Introduction</button></a>
             </div>
           </div>
           <div class="module">
