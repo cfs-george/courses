@@ -94,7 +94,12 @@
         border-radius: 20px;
         transition: all 0.4s ease-in-out;
         z-index: 2;
-        position: relative;
+        overflow: hidden;
+      }
+
+      /* Expand width when right side is shown */
+      .welcome-div.expanded {
+        max-width: 900px; /* allow more room */
       }
 
       .welcome-left {
@@ -102,7 +107,6 @@
         flex-direction: column;
         align-items: center;
         min-width: 220px;
-        position: relative;
       }
 
       .welcome-left h2 {
@@ -124,7 +128,6 @@
       .module {
         width: 100%;
         margin: 5px 0;
-        position: relative;
       }
 
       .module > button {
@@ -136,21 +139,39 @@
         color: #fff;
         font-size: 1rem;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.2s ease;
       }
 
       .module > button:hover {
         background-color: #777;
       }
 
-      /* Sub-buttons: positioned to the right of their parent */
+      /* Visual indicator for active module */
+      .module > button.active {
+        background-color: #1e90ff;
+        color: #fff;
+        transform: scale(1.03);
+      }
+
+      /* Right-side expansion area */
+      .welcome-right {
+        overflow: hidden;
+        max-width: 0;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+        transition: max-width 0.4s ease, opacity 0.4s ease;
+      }
+
+      .welcome-div.expanded .welcome-right {
+        max-width: 250px;
+        opacity: 1;
+      }
+
       .sub-buttons {
         display: none;
         flex-direction: column;
-        position: absolute;
-        top: 0;
-        left: 100%;
-        margin-left: 15px;
       }
 
       .sub-buttons.active {
@@ -163,7 +184,7 @@
       }
 
       .sub-buttons button {
-        width: 180px;
+        width: 100%;
         padding: 10px;
         border: none;
         border-radius: 8px;
@@ -254,11 +275,12 @@
       @media screen and (max-width: 750px) {
         .welcome-div {
           flex-direction: column;
+          max-width: 100% !important;
         }
-        .sub-buttons {
-          position: static;
+        .welcome-right {
+          max-width: 100% !important;
           margin-left: 0;
-          margin-top: 10px;
+          margin-top: 20px;
         }
       }
     </style>
@@ -276,46 +298,38 @@
           <h2>Dirty Cars Courses</h2>
           <p>Choose a module below</p>
 
-          <div class="module">
-            <button>Module 1</button>
-            <div class="sub-buttons" data-module="Module 1">
-              <a href="https://example.com/module1/lesson1" target="_blank"><button>Lesson 1</button></a>
-              <a href="https://example.com/module1/lesson2" target="_blank"><button>Lesson 2</button></a>
-            </div>
+          <div class="module"><button>Module 1</button></div>
+          <div class="module"><button>Module 2</button></div>
+          <div class="module"><button>Module 3</button></div>
+          <div class="module"><button>Module 4</button></div>
+          <div class="module"><button>Module 5</button></div>
+          <div class="module"><button>Module 6</button></div>
+        </div>
+
+        <!-- RIGHT: sub-buttons -->
+        <div class="welcome-right">
+          <div class="sub-buttons" data-module="Module 1">
+            <a href="https://example.com/module1/lesson1" target="_blank"><button>Lesson 1</button></a>
+            <a href="https://example.com/module1/lesson2" target="_blank"><button>Lesson 2</button></a>
           </div>
-          <div class="module">
-            <button>Module 2</button>
-            <div class="sub-buttons" data-module="Module 2">
-              <a href="https://example.com/module2/lesson1" target="_blank"><button>Lesson 1</button></a>
-              <a href="https://example.com/module2/lesson2" target="_blank"><button>Lesson 2</button></a>
-              <a href="https://example.com/module2/lesson3" target="_blank"><button>Lesson 3</button></a>
-            </div>
+          <div class="sub-buttons" data-module="Module 2">
+            <a href="https://example.com/module2/lesson1" target="_blank"><button>Lesson 1</button></a>
+            <a href="https://example.com/module2/lesson2" target="_blank"><button>Lesson 2</button></a>
+            <a href="https://example.com/module2/lesson3" target="_blank"><button>Lesson 3</button></a>
           </div>
-          <div class="module">
-            <button>Module 3</button>
-            <div class="sub-buttons" data-module="Module 3">
-              <a href="https://example.com/module3/lesson1" target="_blank"><button>Lesson 1</button></a>
-            </div>
+          <div class="sub-buttons" data-module="Module 3">
+            <a href="https://example.com/module3/lesson1" target="_blank"><button>Lesson 1</button></a>
           </div>
-          <div class="module">
-            <button>Module 4</button>
-            <div class="sub-buttons" data-module="Module 4">
-              <a href="https://example.com/module4/lesson1" target="_blank"><button>Lesson 1</button></a>
-              <a href="https://example.com/module4/lesson2" target="_blank"><button>Lesson 2</button></a>
-            </div>
+          <div class="sub-buttons" data-module="Module 4">
+            <a href="https://example.com/module4/lesson1" target="_blank"><button>Lesson 1</button></a>
+            <a href="https://example.com/module4/lesson2" target="_blank"><button>Lesson 2</button></a>
           </div>
-          <div class="module">
-            <button>Module 5</button>
-            <div class="sub-buttons" data-module="Module 5">
-              <a href="https://example.com/module5/lesson1" target="_blank"><button>Lesson 1</button></a>
-            </div>
+          <div class="sub-buttons" data-module="Module 5">
+            <a href="https://example.com/module5/lesson1" target="_blank"><button>Lesson 1</button></a>
           </div>
-          <div class="module">
-            <button>Module 6</button>
-            <div class="sub-buttons" data-module="Module 6">
-              <a href="https://example.com/module6/lesson1" target="_blank"><button>Lesson 1</button></a>
-              <a href="https://example.com/module6/lesson2" target="_blank"><button>Lesson 2</button></a>
-            </div>
+          <div class="sub-buttons" data-module="Module 6">
+            <a href="https://example.com/module6/lesson1" target="_blank"><button>Lesson 1</button></a>
+            <a href="https://example.com/module6/lesson2" target="_blank"><button>Lesson 2</button></a>
           </div>
         </div>
       </div>
@@ -360,22 +374,32 @@
     </div>
 
     <script>
-      const modules = document.querySelectorAll(".module > button");
+      const welcomeDiv = document.querySelector(".welcome-div");
       const subGroups = document.querySelectorAll(".sub-buttons");
+      const moduleButtons = document.querySelectorAll(".module > button");
 
-      modules.forEach((btn) => {
+      moduleButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
-          const module = btn.parentElement;
-          const sub = module.querySelector(".sub-buttons");
+          const moduleName = btn.textContent.trim();
 
-          const isActive = sub.classList.contains("active");
+          // Expand welcome-div
+          welcomeDiv.classList.add("expanded");
 
-          // Close all sub-groups
+          // Reset all module button states
+          moduleButtons.forEach((b) => b.classList.remove("active"));
+
+          // Highlight the active one
+          btn.classList.add("active");
+
+          // Hide all sub-groups
           subGroups.forEach((sg) => sg.classList.remove("active"));
 
-          if (!isActive) {
-            // Open the clicked one
-            sub.classList.add("active");
+          // Show the selected sub-group
+          const match = document.querySelector(
+            `.sub-buttons[data-module="${moduleName}"]`
+          );
+          if (match) {
+            match.classList.add("active");
           }
         });
       });
