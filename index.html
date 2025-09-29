@@ -83,7 +83,7 @@
       .welcome-div {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         width: 400px;
         margin-top: 60px;
         padding: 20px;
@@ -153,6 +153,7 @@
       }
 
       .module > button i {
+        margin-left: 80px;
         opacity: 0;
         transition: opacity 0.6s ease;
         color: #0355B6;
@@ -161,21 +162,6 @@
       .module > button.active i {
         opacity: 1;
       }
-
-      .module > button p {
-        margin-left: 40px;
-        margin-right: 40px;
-      }
-
-      /* .module > button::after {
-        content: '\25B6';
-        margin-left: 10px;
-        color: transparent;
-      }
-
-      .module > button.active::after {
-        color: #fff;
-      } */
 
       /* Sub-buttons: positioned to the right of their parent */
       .sub-buttons {
@@ -324,14 +310,14 @@
           <p>Choose a module below</p>
 
           <div class="module">
-            <button>Module 1<i class="fas fa-chevron-right"></i></button>
+            <button>Module 1<i class="fas fa-arrow-right"></i></button>
             <div class="sub-buttons" data-module="Module 1">
               <a href="https://example.com/module1/lesson1" target="_blank"><button>Lesson 1</button></a>
               <a href="https://example.com/module1/lesson2" target="_blank"><button>Lesson 2</button></a>
             </div>
           </div>
           <div class="module">
-            <button>Module 2<i class="fas fa-chevron-right"></i></button>
+            <button>Module 2<i class="fas fa-arrow-right"></i></button>
             <div class="sub-buttons" data-module="Module 2">
               <a href="https://example.com/module2/lesson1" target="_blank"><button>Lesson 1</button></a>
               <a href="https://example.com/module2/lesson2" target="_blank"><button>Lesson 2</button></a>
@@ -339,26 +325,26 @@
             </div>
           </div>
           <div class="module">
-            <button>Module 3<i class="fas fa-chevron-right"></i></button>
+            <button>Module 3<i class="fas fa-arrow-right"></i></button>
             <div class="sub-buttons" data-module="Module 3">
               <a href="https://example.com/module3/lesson1" target="_blank"><button>Lesson 1</button></a>
             </div>
           </div>
           <div class="module">
-            <button>Module 4<i class="fas fa-chevron-right"></i></button>
+            <button>Module 4<i class="fas fa-arrow-right"></i></button>
             <div class="sub-buttons" data-module="Module 4">
               <a href="https://example.com/module4/lesson1" target="_blank"><button>Lesson 1</button></a>
               <a href="https://example.com/module4/lesson2" target="_blank"><button>Lesson 2</button></a>
             </div>
           </div>
           <div class="module">
-            <button>Module 5<i class="fas fa-chevron-right"></i></button>
+            <button>Module 5<i class="fas fa-arrow-right"></i></button>
             <div class="sub-buttons" data-module="Module 5">
               <a href="https://example.com/module5/lesson1" target="_blank"><button>Lesson 1</button></a>
             </div>
           </div>
           <div class="module">
-            <button>Module 6<i class="fas fa-chevron-right"></i></button>
+            <button>Module 6<i class="fas fa-arrow-right"></i></button>
             <div class="sub-buttons" data-module="Module 6">
               <a href="https://example.com/module6/lesson1" target="_blank"><button>Lesson 1</button></a>
               <a href="https://example.com/module6/lesson2" target="_blank"><button>Lesson 2</button></a>
