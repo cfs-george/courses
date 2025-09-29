@@ -32,13 +32,7 @@
           #111,
           #111,
           #111,
-          #111,
-          #111,
-          #111,
-          #111,
-          #111,
-          #111,
-          rgb(19, 21, 43)
+          #0355B6
         );
       }
 
@@ -86,15 +80,20 @@
       .welcome-div {
         display: flex;
         flex-direction: row;
+        width: 260px;
         max-width: 600px;
         margin-top: 60px;
         padding: 20px;
         background-color: rgba(34, 34, 34, 0.5);
         backdrop-filter: blur(2px);
         border-radius: 20px;
-        transition: all 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
         z-index: 2;
         position: relative;
+      }
+
+      .welcome-div.expanded {
+        width: 455px;
       }
 
       .welcome-left {
@@ -137,24 +136,47 @@
         font-size: 1rem;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .module > button:hover {
         background-color: #777;
       }
 
+      .module > button.active {
+        background-color: #777;
+      }
+
+      .module > button::after {
+        content: '\25B6';
+        margin-left: 10px;
+        color: transparent;
+      }
+
+      .module > button.active::after {
+        color: #fff;
+      }
+
       /* Sub-buttons: positioned to the right of their parent */
       .sub-buttons {
-        display: none;
+        display: flex;
         flex-direction: column;
         position: absolute;
         top: 0;
         left: 100%;
         margin-left: 15px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
       }
 
       .sub-buttons.active {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
       }
 
       .sub-buttons a {
@@ -254,7 +276,15 @@
       @media screen and (max-width: 750px) {
         .welcome-div {
           flex-direction: column;
+          width: auto !important;
+          max-width: 90% !important;
         }
+
+        .welcome-div.expanded {
+          width: auto !important;
+          max-width: 90% !important;
+        }
+
         .sub-buttons {
           position: static;
           margin-left: 0;
@@ -370,12 +400,23 @@
 
           const isActive = sub.classList.contains("active");
 
-          // Close all sub-groups
+          // Close all sub-groups and button actives
           subGroups.forEach((sg) => sg.classList.remove("active"));
+          modules.forEach((b) => b.classList.remove("active"));
 
           if (!isActive) {
             // Open the clicked one
             sub.classList.add("active");
+            btn.classList.add("active");
+          }
+
+          // Check if any sub is active and toggle expanded class
+          const anyActive = Array.from(subGroups).some((sg) => sg.classList.contains("active"));
+          const welcomeDiv = document.querySelector(".welcome-div");
+          if (anyActive) {
+            welcomeDiv.classList.add("expanded");
+          } else {
+            welcomeDiv.classList.remove("expanded");
           }
         });
       });
